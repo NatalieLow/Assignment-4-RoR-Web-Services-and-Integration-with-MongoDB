@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # resources :races
 
   scope '/api' do
-    resources :races, only: [:index, :create, :show], controller: 'api/races' do
+    resources :races, only: [:index, :create, :show, :update, :destroy], controller: 'api/races' do
       resources :results, only: [:index, :show], controller: 'api/race_results'
     end
     resources :racers, only: [:index, :show], controller: 'api/racers' do

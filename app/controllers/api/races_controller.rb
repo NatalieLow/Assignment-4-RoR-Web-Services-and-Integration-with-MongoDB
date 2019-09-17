@@ -22,7 +22,8 @@ module Api
             if !request.accept || request.accept == "*/*"
                 render plain: "/api/races/#{params[:id]}"
             else
-                #real implementation ...
+                @race = Race.find(params[:id])
+                render json: @race
             end
         end
 
@@ -34,12 +35,31 @@ module Api
                     render plain: :nothing, status: :ok
                 end
             else
-                #real implementation
+                @race = Race.create(race_params)
+                render plain: @race.name.to_s, status: :created
             end
+        end
+
+        def update
+            race = Race.find(params[:id])
+            race.update(race_params)
+            render json: race
+        end
+
+        def destroy
+            race = Race.find(params[:id])
+            race.destroy
+            render :nothing=>true, :status => :no_content
         end
 
         def find_results
             @results
+        end
+
+        private
+
+        def race_params
+            params.require(:race).permit(:name, :date)
         end
     end
 end
