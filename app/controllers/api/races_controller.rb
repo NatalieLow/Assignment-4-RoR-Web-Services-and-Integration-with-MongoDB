@@ -20,7 +20,7 @@ module Api
         end
         def show
             if !request.accept || request.accept == "*/*"
-                render plain: "/api/races/#{params[:id]}", status: :not_found  
+                render plain: "/api/races/#{params[:id]}" 
             else
                 @race = Race.find(params[:id])
                 render :show, status: :ok

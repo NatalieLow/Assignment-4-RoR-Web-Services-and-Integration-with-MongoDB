@@ -1,0 +1,1 @@
+json.partial! "api/race_results/result", result: @result
