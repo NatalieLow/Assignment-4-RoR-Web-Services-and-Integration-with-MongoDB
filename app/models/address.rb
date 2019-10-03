@@ -7,8 +7,7 @@ class Address
         @location = location.is_a?(Point) ? location : Point.demongoize(location)
     end
 
-    def mongoize 
-          puts "location = #{Point.mongoize(@location)}"
+    def mongoize  
         return{:city => @city, :state => @state, :loc => (Point.mongoize(@location))}
     end
 
